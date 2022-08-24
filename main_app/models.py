@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 LISTTYPES = (
     ('I', 'Items'),
@@ -11,6 +12,7 @@ class List(models.Model):
     name = models.CharField(max_length=50)
     details = models.CharField(max_length=150)
     created_at = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     type = models.CharField(
         max_length = 5,
         choices=LISTTYPES,
