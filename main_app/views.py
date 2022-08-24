@@ -45,6 +45,7 @@ class ListCreate(LoginRequiredMixin,  CreateView):
     # return super().form_valid(form)
 
 class Signup(View):
+    template_name= "registration/signup.html"
     # show a form to fill out
     def get(self, request):
         form = UserCreationForm()

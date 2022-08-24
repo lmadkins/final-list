@@ -20,6 +20,7 @@
           {% if user.is_authenticated %}
           <span>Welcome: {{user.username}}</span>
             <a href="/lists"><li>My Lists</li></a>
+            <a href="{% url 'password_reset' %}">Reset Password</a>
             <a href="{% url 'logout' %}"><li>Logout</li></a>
             
             {% else %}
