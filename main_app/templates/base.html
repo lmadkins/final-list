@@ -16,10 +16,18 @@
       <nav>
         <ul>
           <a href="/"><li>Home</li></a>
-          <a href="/lists"><li>My Lists</li></a>
+         
+          {% if user.is_authenticated %}
+            <a href="/lists"><li>My Lists</li></a>
+            <a href="{% url 'logout' %}"><li>Logout</li></a>
+            
+            {% else %}
+            <a href="{% url 'login' %}"><li>Login</li></a>
+          {% endif %}
           <!-- <li>User</li> -->
         </ul>
       </nav>
+      
         <div class="container">
               This is in Base.html
             {% block content %}{% endblock %}
