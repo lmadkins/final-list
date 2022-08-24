@@ -14,3 +14,6 @@ class Home(TemplateView):
     #     # Here we are returning a generic response
     #     # This is similar to response.send() in express
     #     return HttpResponse("Home")
+
+class Lists(TemplateView):
+    template_name = "lists.html"
