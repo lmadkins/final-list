@@ -18,11 +18,13 @@
           <a href="/"><li>Home</li></a>
          
           {% if user.is_authenticated %}
+          <span>Welcome: {{user.username}}</span>
             <a href="/lists"><li>My Lists</li></a>
             <a href="{% url 'logout' %}"><li>Logout</li></a>
             
             {% else %}
             <a href="{% url 'login' %}"><li>Login</li></a>
+            <a href="{% url 'signup' %}"><li>Signup</li></a>
           {% endif %}
           <!-- <li>User</li> -->
         </ul>
