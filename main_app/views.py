@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views import View # <- View class to handle requests
 from django.http import HttpResponse # <- a class to handle sending a type of response
 from django.views.generic.base import TemplateView
+from .models import List
 
 
 # Create your views here.
@@ -16,4 +17,8 @@ class Home(TemplateView):
     #     return HttpResponse("Home")
 
 class Lists(TemplateView):
-    template_name = "lists.html"
+    template_name = "lists_list.html"
+
+def lists_index(request):
+    lists = List.objects.all()
+    return render(request, 'lists_list.html', { 'lists': lists })
