@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main_app',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -175,7 +176,7 @@ LOGIN_REDIRECT_URL = '/lists/'
 LOGOUT_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
+EMAIL_FILE_PATH = BASE_DIR / "accounts/sent_emails"
 
 # Configure Django App for Heroku.
 import django_on_heroku

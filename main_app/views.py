@@ -44,20 +44,3 @@ class ListCreate(LoginRequiredMixin,  CreateView):
     # # Let the CreateView do its job as usual
     # return super().form_valid(form)
 
-class Signup(View):
-    template_name= "registration/signup.html"
-    # show a form to fill out
-    def get(self, request):
-        form = UserCreationForm()
-        context = {"form": form}
-        return render(request, "registration/signup.html", context)
-    # on form submit, validate the form and login the user.
-    def post(self, request):
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect("lists_list")
-        else:
-            context = {"form": form}
-            return render(request, "registration/signup.html", context)
