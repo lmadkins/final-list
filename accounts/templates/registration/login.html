@@ -4,9 +4,10 @@
     {% csrf_token %} {{ form.as_p }}
 
     <!-- <input type="submit" class="btn" value="Login" /> -->
-        <input type="submit" class="btn button-isprimary" value="login" />
+        <!-- <input type="submit" class="btn button-isprimary" value="login" /> -->
         <input type="hidden" name="next" value="{{ next }}" />
-        <button type="submit" class="button is-primary">Login</button>
+        <button type="submit" class="btn button is-primary">Login</button>
+        <br></br>
         <input type="hidden" name="next" value="{{ next }}" />
 
     <a href="{% url 'password_reset' %}">Forgot Your Password?</a>
