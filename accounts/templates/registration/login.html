@@ -1,11 +1,13 @@
 {% extends 'base.html' %} {% block content %}
-
 <h1 class="title">Log In</h1>
 <form method="post" action="{% url 'login' %}">
     {% csrf_token %} {{ form.as_p }}
-   
-    <input type="submit" class="btn" value="Login" />
-    <input type="hidden" name="next" value="{{ next }}" />
+
+    <!-- <input type="submit" class="btn" value="Login" /> -->
+        <input type="submit" class="btn button-isprimary" value="login" />
+        <input type="hidden" name="next" value="{{ next }}" />
+        <button type="submit" class="button is-primary">Login</button>
+        <input type="hidden" name="next" value="{{ next }}" />
 
     <a href="{% url 'password_reset' %}">Forgot Your Password?</a>
 </form>
