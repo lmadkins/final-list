@@ -1,5 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Hello from List of Lists</h1>
+<h2>My Lists</h2>
+{% for list in lists %}
+    <ul class="collapsible">
+        <li>
+            <div class="collapsible-header"><i class="material-icons">filter_drama</i>
+                <a href="{% url 'detail' list.pk %}">
+            {{ list.name }}
+            </a>
+            </div>
+            <div class="collapsible-body">
+                {{ list.details }}
+            </div>
+
+        </li>
+    </ul>  
+     
+{% endfor %}
+
+<!-- <script>
+    console.log(list.name)
+</script>  -->
 {% endblock %}
 

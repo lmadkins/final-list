@@ -4,8 +4,10 @@ from django.views import View # <- View class to handle requests
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
+from django.views.generic.detail import DetailView
 #Models
 from .models import List
+from .models import ListItem
 # Auth
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -26,12 +28,36 @@ class Home(TemplateView):
     #     return HttpResponse("Home")
 
 @method_decorator(login_required, name='dispatch')
-class Lists(TemplateView):
+class ListsList(TemplateView):
     template_name = "lists_list.html"
 
-def lists_index(request):
-    lists = List.objects.filter(user=self.request.user)
-    return render(request, 'lists_list.html', { 'lists': lists })
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["lists"] = List.objects.filter(user=self.request.user)
+        return context
+
+# class ListDetail(DetailView):
+#     # model: List
+#     model: ListItem
+#     template_name: "list_detail.html"
+
+def list_detail(request, id):
+    # context={}
+    # list = ListItem.objects.get()
+    # return render(request, {'list':  list})
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["list"] = List.objects.filter(user=self.request.user)
+        return context
+#         return render(request,'list_detail.html', {
+#         'list': list
+# })
+        list = List.objects.filter(user=self.request.user)
+    item = ListItem.objects.all()
+    return render(request, 'list_detail.html', {
+        'list': 'list',
+        'items': item
+})
 
 class ListCreate(LoginRequiredMixin,  CreateView):
     model: List

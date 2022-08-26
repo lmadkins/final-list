@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: louise.m.adkins@gmail.com
+Date: Thu, 25 Aug 2022 22:39:45 -0000
+Message-ID: <166146718536.61564.91081578790112344@1.0.0.127.in-addr.arpa>
+
+
+You're receiving this email because you requested a password reset for your user account at 127.0.0.1:8000.
+
+Please go to the following page and choose a new password:
+
+http://127.0.0.1:8000/accounts/password-reset-confirm/MQ/baqhm9-c75d708c6abaafdc4939edcf0d154f60/
+
+Your username, in case you’ve forgotten: louise
+
+Thanks for using our site!
+
+The 127.0.0.1:8000 team
+
+
+
+-------------------------------------------------------------------------------

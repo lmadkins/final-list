@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+<p></p>
+<h2>{{ list.name }}: Details</h2>
+    <h6>{{ list.details }}</h6>
+    <span>{{ list.created_at }} {{ list.type }}</span>
+       
+
+   
+    <ul class="collapsible">
+        {% for item in items %}
+    <li> 
+        <div class="collapsible-header">
+            <label class="toggle-checkbox">
+                <input type="checkbox" 
+                />
+                <span> {{ item.name }}</span>
+            </label>
+            {% if item.time_estimate != '0' %}
+            <span class="new badge" data-badge-caption=" {{ item.time_estimate }}"></span>
+            {%  endif %}
+
+            {% if item.priority == 'H' %}
+            <span class="new badge red" data-badge-caption="Priority">High</span>
+            {% endif %}
+            {% if item.priority == 'M' %}
+            <span class="new badge orange" data-badge-caption="Priority">Medium</span>
+            {% endif %}
+            {% if item.priority == 'L' %}
+            <span class="new badge blue" data-badge-caption="Priority">Low</span>
+            {% endif %}
+            {% if item.priority == '' %}
+            <span class="new badge grey" data-badge-caption="Given">None</span>
+            {% endif %}
+
+        </div>
+        <div class="collapsible-body">
+            <span>{{ item.details }}
+            </span>
+
+        </div>
+       
+    </li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

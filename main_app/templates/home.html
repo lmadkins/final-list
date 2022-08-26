@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Hello from Home</h1>
+    {% if user.is_authenticated %}
+    <span>Welcome: {{user.username}}</span>
+    {% else %}
+    <span>Please Login or Signup</span>
+    {% endif %}
+
 {% endblock %}
 

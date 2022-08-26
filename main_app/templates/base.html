@@ -5,37 +5,81 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
         <link rel="stylesheet" href="{% static 'styles/main.css' %}" />
-        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> -->
+ 
+        <!-- Materialize (for Collapsible components)  -->
+        <link rel="stylesheet" href="{% static 'styles/materialize.css' %}" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <script src="{% static 'scripts/materialize.js' %}" defer></script>
+        <!--  -->
+        <!-- Bulma  -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+         <!--  -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> 
         <script src="{% static 'scripts/main.js' %}" defer></script>
-        <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
-        <title>List App - {% block title %}{% endblock %}</title> 
+        <title>Final List</title> 
     </head>
     <body >
-      <nav>
-        <ul>
-          <a href="/"><li>Home</li></a>
-         
-          {% if user.is_authenticated %}
-          <span>Welcome: {{user.username}}</span>
-            <a href="/lists"><li>My Lists</li></a>
-            <a href="{% url 'password_reset' %}">Reset Password</a>
-            <a href="{% url 'logout' %}"><li>Logout</li></a>
-            
-            {% else %}
-            <a href="{% url 'login' %}"><li>Login</li></a>
-            <a href="{% url 'signup' %}"><li>Signup</li></a>
-          {% endif %}
-          <!-- <li>User</li> -->
-        </ul>
-      </nav>
+      <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="/">
+            Final List
+          </a>
       
-        <div class="container">
-              This is in Base.html
-            {% block content %}{% endblock %}
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <!-- Links in hamburger menu if logged in  -->
+            <!-- {% if user.is_authenticated %}
+            <span aria-hidden="true"href="/lists">
 
+              My Lists
+            </span>
+            <span aria-hidden="true"><a href="{% url 'logout' %}">Logout</a></span> -->
+
+            <!-- Links in hamburger menu if logged out  -->
+            {% else %}
+            <!-- <span aria-hidden="true"><a href="{% url 'login' %}">Login
+            </a></span>
+            <span aria-hidden="true"><a href="{% url 'signup' %}">Signup
+            </a></span> -->
+          {% endif %}
+
+            
+          </a>
         </div>
+      
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+            {% if user.is_authenticated %}
+            <a class="navbar-item"href="/lists">
+              My Lists
+            </a>
+          </div>
+      
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                  <a class="nav-bar-item" href="{% url 'logout' %}">Logout</a>
+                  {% else %}
+                  <a class="navbar-item" href="{% url 'login' %}">Login
+                  </a>
+                  <a class="navbar-item" href="{% url 'signup' %}">Signup
+                  </a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+
       </div>
     </div>
   </body>
