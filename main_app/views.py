@@ -35,36 +35,19 @@ class ListsList(TemplateView):
         context = super().get_context_data(**kwargs)
         context["lists"] = List.objects.filter(user=self.request.user)
         return context
-    # def lists_index(request):
-    #     lists = List.objects.filter(user=self.request.user)
-    #     # lists = List.objects.all
-    #     return render(request, 'lists_list.html', { 'lists': lists })
 
-class ListDetail(DetailView):
-    # model: List
-    model: ListItem
-    template_name: "list_detail.html"
+# class ListDetail(DetailView):
+#     # model: List
+#     model: ListItem
+#     template_name: "list_detail.html"
 
 def list_detail(request, id):
-    # context={}
-    # list = List.objects.get(id=list_id)
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["items"] = ListItem.objects.all()
-    # return render(request, 'list_detail.html', { 'items': item })
-        return context
-    # def list_detail(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context["items"] = ListItem.objects.all()
-    #     return context
-    # context["items"] = ListItem.objects.all()
-    # context["items"] = ListItem.objects.filter(id=id)
-    # return render(request, "list_detail.html", context)
-    # def get_context_data(self, *args, **kwargs):
-    #     context = super().get_context_data(*args, **kwargs)
-    #     context["item"] = ListItem.objects.all()
-    #     return context
-
+    context={}
+   
+    item = ListItem.objects.all()
+    return render(request, 'list_detail.html', {
+        'items': item
+})
 
 class ListCreate(LoginRequiredMixin,  CreateView):
     model: List

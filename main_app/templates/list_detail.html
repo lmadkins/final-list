@@ -1,25 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<h2>Specific List Details</h2>
-<p>
-    <ul>
-        <li>{{ list.name }}</li>
-        <li>{{ list.details }}</li>
-        <li>{{ list.created_at }}</li>
-        <li>{{ list.type }}</li>
-    </ul>
+<p></p>
+<h2>{{ list.name }}: Details</h2>
+    <h6>{{ list.details }}</h6>
+    <span>{{ list.created_at }} {{ list.type }}</span>
+       
 
    
-    <ul>
+    <ul class="collapsible">
         {% for item in items %}
-        <li>{{ item.name }}</li>
-        <!-- <li>{{ item.details }}</li> -->
-        {% endfor %} -->
-        <!-- <li>{{ list.time_estimate }}</li>
-        <li>{{ item.priority }}</li>
-      
+    <li>
+        
+        <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{ item.name }}</div>
+        <div class="collapsible-body">
+            <span>{{ item.details }}
+                {{ item.priority }}
+            {% if item.time_estimate != '0' %}
+            No time estimate
+            {% else %}
+            {{ item.time_estimate }}
+            </span>
+            
+        {% endif %}
+        </div>
+       
+    </li>
+    {% endfor %}
     </ul>
-   
-</p>
+
 {% endblock %}
