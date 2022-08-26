@@ -1,5 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Hello from List of Lists</h1>
+<h2>My Lists</h2>
+{% for list in lists %}
+    <ul>
+        <li><a href="{% url 'detail' list.pk %}">
+            {{ list.name }}
+        </a></li>
+    </ul>  
+     
+{% endfor %}
+
+<!-- <script>
+    console.log(list.name)
+</script>  -->
 {% endblock %}
 

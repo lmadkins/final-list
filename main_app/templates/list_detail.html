@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Specific List Details</h2>
+<p>
+    <ul>
+        <li>{{ list.name }}</li>
+        <li>{{ list.details }}</li>
+        <li>{{ list.created_at }}</li>
+        <li>{{ list.type }}</li>
+    </ul>
+
+   
+    <ul>
+        {% for item in items %}
+        <li>{{ item.name }}</li>
+        <!-- <li>{{ item.details }}</li> -->
+        {% endfor %} -->
+        <!-- <li>{{ list.time_estimate }}</li>
+        <li>{{ item.priority }}</li>
+      
+    </ul>
+   
+</p>
+{% endblock %}
