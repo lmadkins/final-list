@@ -48,8 +48,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'main_app',
-    # 'materializecssform',
+    'materializecssform',
     'bulma',
+    'materialize',
 ]
 
 MIDDLEWARE = [
