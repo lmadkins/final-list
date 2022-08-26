@@ -11,17 +11,31 @@
         {% for item in items %}
     <li>
         
-        <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{ item.name }}</div>
+        <div class="collapsible-header"><i class="material-icons">filter_drama</i>
+            {{ item.name }}
+
+            {% if item.time_estimate != '0' %}
+            <span class="new badge" data-badge-caption=" {{ item.time_estimate }}"></span>
+            {%  endif %}
+
+            {% if item.priority == 'H' %}
+            <span class="new badge red" data-badge-caption="Priority">High</span>
+            {% endif %}
+            {% if item.priority == 'M' %}
+            <span class="new badge orange" data-badge-caption="Priority">Medium</span>
+            {% endif %}
+            {% if item.priority == 'L' %}
+            <span class="new badge blue" data-badge-caption="Priority">Low</span>
+            {% endif %}
+            {% if item.priority == '' %}
+            <span class="new badge grey" data-badge-caption="Given">None</span>
+            {% endif %}
+
+        </div>
         <div class="collapsible-body">
             <span>{{ item.details }}
-                {{ item.priority }}
-            {% if item.time_estimate != '0' %}
-            No time estimate
-            {% else %}
-            {{ item.time_estimate }}
             </span>
-            
-        {% endif %}
+
         </div>
        
     </li>
