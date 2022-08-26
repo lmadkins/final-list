@@ -42,10 +42,20 @@ class ListsList(TemplateView):
 #     template_name: "list_detail.html"
 
 def list_detail(request, id):
-    context={}
-   
+    # context={}
+    # list = ListItem.objects.get()
+    # return render(request, {'list':  list})
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["list"] = List.objects.filter(user=self.request.user)
+        return context
+#         return render(request,'list_detail.html', {
+#         'list': list
+# })
+        list = List.objects.filter(user=self.request.user)
     item = ListItem.objects.all()
     return render(request, 'list_detail.html', {
+        'list': 'list',
         'items': item
 })
 
