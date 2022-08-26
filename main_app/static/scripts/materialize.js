@@ -12372,3 +12372,104 @@ $jscomp.polyfill = function (e, r, p, m) {
 
   Range.init($('input[type=range]'));
 })(cash, M.anime);
+
+
+      /**
+       * Setup Event Handlers
+       */
+
+     }, {
+      key: "_setupEventHandlers",
+      value: function _setupEventHandlers() {
+        var _this69 = this;
+
+        this._handleSelectChangeBound = this._handleSelectChange.bind(this);
+        this._handleOptionClickBound = this._handleOptionClick.bind(this);
+        this._handleInputClickBound = this._handleInputClick.bind(this);
+
+        $(this.dropdownOptions).find('li:not(.optgroup)').each(function (el) {
+          el.addEventListener('click', _this69._handleOptionClickBound);
+        });
+        this.el.addEventListener('change', this._handleSelectChangeBound);
+        this.input.addEventListener('click', this._handleInputClickBound);
+      }
+
+      /**
+       * Remove Event Handlers
+       */
+
+    }, {
+      key: "_removeEventHandlers",
+      value: function _removeEventHandlers() {
+        var _this70 = this;
+
+        $(this.dropdownOptions).find('li:not(.optgroup)').each(function (el) {
+          el.removeEventListener('click', _this70._handleOptionClickBound);
+        });
+        this.el.removeEventListener('change', this._handleSelectChangeBound);
+        this.input.removeEventListener('click', this._handleInputClickBound);
+      }
+
+      /**
+       * Handle Select Change
+       * @param {Event} e
+       */
+
+    }, {
+      key: "_handleSelectChange",
+      value: function _handleSelectChange(e) {
+        this._setValueToInput();
+      }
+
+      /**
+       * Handle Option Click
+       * @param {Event} e
+       */
+
+    }, {
+      key: "_handleOptionClick",
+      value: function _handleOptionClick(e) {
+        e.preventDefault();
+        var option = $(e.target).closest('li')[0];
+        var key = option.id;
+        if (!$(option).hasClass('disabled') && !$(option).hasClass('optgroup') && key.length) {
+          var selected = true;
+
+          if (this.isMultiple) {
+            // Deselect placeholder option if still selected.
+            var placeholderOption = $(this.dropdownOptions).find('li.disabled.selected');
+            if (placeholderOption.length) {
+              placeholderOption.removeClass('selected');
+              placeholderOption.find('input[type="checkbox"]').prop('checked', false);
+              this._toggleEntryFromArray(placeholderOption[0].id);
+            }
+            selected = this._toggleEntryFromArray(key);
+          } else {
+            $(this.dropdownOptions).find('li').removeClass('selected');
+            $(option).toggleClass('selected', selected);
+          }
+
+          // Set selected on original select option
+          // Only trigger if selected state changed
+          var prevSelected = $(this._valueDict[key].el).prop('selected');
+          if (prevSelected !== selected) {
+            $(this._valueDict[key].el).prop('selected', selected);
+            this.$el.trigger('change');
+          }
+        }
+
+        e.stopPropagation();
+      }
+
+      /**
+       * Handle Input Click
+       */
+
+    }, {
+      key: "_handleInputClick",
+      value: function _handleInputClick() {
+        if (this.dropdown && this.dropdown.isOpen) {
+          this._setValueToInput();
+          this._setSelectedStates();
+        }
+      }

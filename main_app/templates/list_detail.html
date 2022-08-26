@@ -9,11 +9,13 @@
    
     <ul class="collapsible">
         {% for item in items %}
-    <li>
-        
-        <div class="collapsible-header"><i class="material-icons">filter_drama</i>
-            {{ item.name }}
-
+    <li> 
+        <div class="collapsible-header">
+            <label class="toggle-checkbox">
+                <input type="checkbox" 
+                />
+                <span> {{ item.name }}</span>
+            </label>
             {% if item.time_estimate != '0' %}
             <span class="new badge" data-badge-caption=" {{ item.time_estimate }}"></span>
             {%  endif %}
