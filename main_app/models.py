@@ -55,6 +55,8 @@ class List(models.Model):
         default=LISTTYPES[0][0]
     )
 
+   # renames the instances of the model
+    # with their title name
     def __str__(self):
         return self.name
 
@@ -84,6 +86,8 @@ class ListItem(models.Model):
     completed =  models.BooleanField(default=False)
     list = models.ForeignKey(List, on_delete=models.CASCADE, related_name="lists")
 
+   # renames the instances of the model
+    # with their title name
     def __str__(self):
         return self.name
 
